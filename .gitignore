@@ -3,4 +3,3 @@ dist
 .build
 .out
 .env
-pnpm-lock.yaml
