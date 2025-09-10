@@ -20,5 +20,5 @@ model Question {
   text    String
   options String[]
   quizId  Int
-  quiz    Quiz     @relation(fields: [quizId], references: [id])
+  quiz    Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }

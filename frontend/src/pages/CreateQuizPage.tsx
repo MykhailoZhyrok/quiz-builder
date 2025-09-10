@@ -25,6 +25,7 @@ export default function CreateQuizPage() {
 
     const onSubmit = async (data: FormValues) => {
         await createQuiz(data);
+        console.log(data)
         navigate('/quizzes');
     };
 

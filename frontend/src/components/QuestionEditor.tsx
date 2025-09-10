@@ -14,6 +14,7 @@ export default function QuestionEditor() {
     const { control, register, watch, setValue } = useFormContext<FormValues>();
     const { fields, append, remove } = useFieldArray({ control, name: 'questions' });
 
+
     const addQuestion = () =>
         append({ type: 'boolean', text: '', options: ['True', 'False'] });
 
@@ -28,6 +29,7 @@ export default function QuestionEditor() {
             {fields.map((field, index) => {
                 const qType = watch(`questions.${index}.type`);
                 const options = watch(`questions.${index}.options`) || [];
+                const { onChange: rhfOnChange, ...typeReg } = register(`questions.${index}.type` as const);
 
                 return (
                     <div key={field.id} className="border rounded p-4">
@@ -41,9 +43,12 @@ export default function QuestionEditor() {
                         <label className="block mt-3 text-sm font-medium">Type</label>
                         <select
                             className="mt-1 w-full border rounded px-3 py-2"
-                            {...register(`questions.${index}.type` as const)}
-                            onChange={(e) => typeChanged(index, e.target.value as QuestionType)}
+                            {...typeReg}
                             value={qType}
+                            onChange={(e) => {
+                                rhfOnChange(e);
+                                typeChanged(index, e.target.value as QuestionType);
+                            }}
                         >
                             <option value="boolean">Boolean (True/False)</option>
                             <option value="input">Input (short text)</option>

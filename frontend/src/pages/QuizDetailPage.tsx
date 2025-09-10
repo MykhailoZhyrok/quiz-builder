@@ -15,6 +15,7 @@ export default function QuizDetailPage() {
             try {
                 const data = await getQuiz(id);
                 setQuiz(data);
+                console.log(data)
             } finally {
                 setLoading(false);
             }
