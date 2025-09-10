@@ -27,7 +27,7 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - "${HOST_PORT:-4001}:4000"
+      - "${HOST_PORT:-4000}:4000"
     depends_on:
       postgres:
         condition: service_healthy
